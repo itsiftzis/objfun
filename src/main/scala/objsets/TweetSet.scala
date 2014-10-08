@@ -185,7 +185,9 @@ class NonEmpty(elem: Tweet, left: TweetSet, right: TweetSet) extends TweetSet {
   }
 
   override def mostRetweeted: Tweet = {
-    new Tweet("", "", 0)
+     var most: Tweet = elem
+      (left union right).foreach(t => if (t.retweets > most.retweets) most = t)
+      most
   }
 
   override def descendingByRetweet: TweetList = {
