@@ -191,14 +191,17 @@ class NonEmpty(elem: Tweet, left: TweetSet, right: TweetSet) extends TweetSet {
   }
 
   override def descendingByRetweet: TweetList = {
-    def loop(tSet:TweetSet, mostRetweeted:Tweet): TweetList = {
-      if (!tSet.contains(mostRetweeted)) Nil
-      else {
-        val newTweetSet = tSet.remove(mostRetweeted)
-        loop(newTweetSet, mostRetweeted)
+    val initial = new Cons(this.mostRetweeted, Nil)
+
+    def loop(tList: TweetList, tSet: TweetSet): TweetList = {
+      try {
+          loop(initial, tSet.remove(tSet.mostRetweeted))
+      }
+      catch {
+        case e: NoSuchElementException => tList
       }
     }
-    loop(this, this.mostRetweeted)
+    loop(initial, this.remove(this.mostRetweeted))
   }
 }
 

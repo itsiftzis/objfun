@@ -6,3 +6,4 @@ target/
 project/target/
 submission/target/
 project/project/
+/lib_managed/
