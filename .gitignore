@@ -4,6 +4,9 @@
 .project
 target/
 project/target/
+project/target
 submission/target/
-project/project/
+submission/target
+project/project/target/
+project/project/target
 /lib_managed/
